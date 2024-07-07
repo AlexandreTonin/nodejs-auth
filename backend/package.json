@@ -1,0 +1,39 @@
+{
+  "name": "nodejs-auth",
+  "version": "1.0.0",
+  "description": "a simple nodejs authentication application",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexandretonin/nodejs-auth.git"
+  },
+  "keywords": [
+    "nodejs",
+    "auth",
+    "node",
+    "js",
+    "jwt",
+    "express"
+  ],
+  "author": "Alexandre Tonin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexandretonin/nodejs-auth/issues"
+  },
+  "homepage": "https://github.com/alexandretonin/nodejs-auth#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.10.2",
+    "nodemon": "^3.1.4"
+  }
+}
