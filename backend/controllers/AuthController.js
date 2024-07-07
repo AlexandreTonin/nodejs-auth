@@ -43,6 +43,37 @@ export class AuthController {
             return res.status(500).json({ message: "Register failed" })
         }
     }
-    static async login(req, res) { }
+    static async login(req, res) {
+        const { email, password } = req.body
+
+        if (!email) {
+            return res.status(422).json({ message: "Email cannot be empty" })
+        }
+
+        if (!password) {
+            return res.status(422).json({ message: "Password cannot be empty" })
+        }
+
+        try {
+            const user = await UserModel.findByEmail(email)
+
+            if (user.length < 1) {
+                return res.status(401).json({ message: "Invalid credentials" })
+            }
+
+            const checkPassword = await bcrypt.compareSync(password, user[0].passwordHash)
+
+            if (!checkPassword) {
+                return res.status(401).json({ message: "Invalid credentials" })
+            }
+
+            const token = jwt.sign({ userId: user[0].id }, process.env.JWT_SECRET, { expiresIn: '1h' })
+
+            return res.status(200).json({ message: "Logged succesfully", token })
+        } catch (error) {
+            return res.status(500).json({ message: "Login failed" })
+        }
+
+    }
     static async logout(req, res) { }
 }

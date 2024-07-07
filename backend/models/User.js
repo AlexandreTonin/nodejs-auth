@@ -27,7 +27,7 @@ export class UserModel {
         }
     }
     static async findByEmail(userEmail) {
-        const sql = 'SELECT id, firstName, lastName, email, isDeleted, createdAt, modifiedAt, createdBy, modifiedBy FROM `user` WHERE `email` = ? AND isDeleted = ?';
+        const sql = 'SELECT * FROM `user` WHERE `email` = ? AND isDeleted = ?';
         const values = [userEmail, 0]
 
         try {
