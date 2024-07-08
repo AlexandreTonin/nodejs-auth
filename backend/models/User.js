@@ -85,4 +85,19 @@ export class UserModel {
             return error
         }
     }
+    static async updatePassword(userId, data) {
+        const sql = 'UPDATE FROM `user` SET passwordHash = ? WHERE `id` = ?';
+
+        const hashedPassword = await bcrypt.hashSync(data, 10)
+
+        const values = [hashedPassword, userId]
+
+        try {
+            const [rows, fields] = await connection.execute(sql, values)
+
+            return "Password reseted successfully"
+        } catch (error) {
+            return error
+        }
+    }
 }
