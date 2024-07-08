@@ -4,6 +4,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import authRoutes from './routes/authRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import { verifyJwt } from './middlewares/verifyJwt.js'
 
 dotenv.config()
 
@@ -17,7 +18,7 @@ app.use(morgan('tiny'))
 app.use('/', authRoutes)
 app.use('/', userRoutes)
 
-app.get('/', (req, res) => {
+app.get('/', verifyJwt, (req, res) => {
     res.json({ message: 'Server is running...' })
 })
 
