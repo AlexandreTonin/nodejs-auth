@@ -1,21 +1,11 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/register">Register</Link>
-          </li>
-        </ul>
-      </nav>
+      <Navbar />
+      <div className="mt-8"></div>
       <Outlet />
     </div>
   );
