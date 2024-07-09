@@ -8,9 +8,15 @@ import {
   InputRightElement,
   Button,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
+  const { register } = useContext(AuthContext);
+
+  const navigate = useNavigate()
+
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
@@ -31,7 +37,14 @@ const RegisterPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
+    //console.log(formData);
+    try {
+      await register(formData);
+      // Redirecionar ou fazer qualquer outra ação necessária após o registro
+    } catch (error) {
+      console.error('Erro ao cadastrar usuário:', error);
+      // Tratar erros de cadastro, como exibir mensagens de erro para o usuário
+    }
   };
 
   return (
