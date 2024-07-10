@@ -1,6 +1,7 @@
 // AuthContext.js
 import React, { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import apiService from '../../api/api';
 
 const AuthContext = createContext();
 
@@ -34,8 +35,8 @@ const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await axios.post('http://localhost:3000/register', userData);
-      const { message, id, token: authToken } = response.data;
+      const response = await apiService.register(userData);
+      const { message, id, token: authToken } = response
       console.log(message); // Mensagem do backend
       console.log('Novo ID de usuário:', id); // ID do novo usuário
       login({ id }, authToken); // Logar o usuário após o registro
